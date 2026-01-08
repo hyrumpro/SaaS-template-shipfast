@@ -4,6 +4,8 @@ services:
     image: ghcr.io/idee8/shipfree:latest
     ports:
       - "3000:3000"
+    env_file:
+      - ../../.env.production
     environment:
       - NODE_ENV=production
       - HUSKY=0

@@ -5,6 +5,8 @@ services:
       dockerfile: docker/dev/Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - ../../.env.docker
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://devuser:devpass@postgres:5432/shipfreedev
@@ -12,9 +14,12 @@ services:
     volumes:
       - ../../:/app
       - /app/node_modules
+      - /app/.next
     depends_on:
       postgres:
         condition: service_healthy
+    restart: unless-stopped
+
   postgres:
     image: postgres:15-alpine
     environment:
@@ -30,8 +35,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
-    # OPTIONAL
+  # OPTIONAL - Database Management UI
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -41,6 +47,7 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    restart: unless-stopped
 
   portainer:
     image: portainer/portainer-ce:latest

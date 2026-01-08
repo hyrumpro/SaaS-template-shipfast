@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(npm audit:*)",
+      "Bash(pnpm list:*)",
+      "WebSearch",
+      "Bash(pnpm install)",
+      "Bash(pnpm build:*)",
+      "Bash(docker --version:*)",
+      "Bash(docker-compose:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

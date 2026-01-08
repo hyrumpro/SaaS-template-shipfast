@@ -5,12 +5,15 @@ services:
       dockerfile: docker/dev/Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - ../../.env.docker
     environment:
       - NODE_ENV=development
       - HUSKY=0
     volumes:
       - ../../:/app
       - /app/node_modules
+      - /app/.next
     restart: unless-stopped
 
   portainer:

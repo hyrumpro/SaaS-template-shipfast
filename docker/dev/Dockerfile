@@ -1,8 +1,21 @@
 FROM node:21-alpine
+
+# Install pnpm globally
+RUN corepack enable && corepack prepare pnpm@9.15.3 --activate
+
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --no-audit --prefer-offline --legacy-peer-deps
+
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies using pnpm
+RUN pnpm install --frozen-lockfile --prefer-offline
+
+# Copy the rest of the application
 COPY . .
+
 EXPOSE 3000
-RUN npx drizzle-kit push:pg
-CMD ["npm", "run", "dev"]
+
+# Note: Database migrations should be run after environment variables are available
+# They will be run via docker-compose command or manually
+CMD ["pnpm", "run", "dev"]

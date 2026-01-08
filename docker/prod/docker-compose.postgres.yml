@@ -4,6 +4,8 @@ services:
     image: ghcr.io/idee8/shipfree:latest
     ports:
       - "3000:3000"
+    env_file:
+      - ../../.env.production
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://produser:prodpass@postgres:5432/shipfreeprod
@@ -29,6 +31,7 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+
   portainer:
     image: portainer/portainer-ce:latest
     ports:
