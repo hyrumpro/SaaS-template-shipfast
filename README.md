@@ -109,15 +109,7 @@ Portainer is included in both development and production setups to help you mana
 - **Development Mode**: Uses watch mode for real-time updates. Not suitable for production.
 - **Production Mode**: Optimized for performance and security. Requires a rebuild for changes.
 
----
 
-## Docs
-
-For full documentation, visit: [ShipFree Docs](https://shipfree.idee8.agency/docs)
-
-## Code of Conduct
-
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 ## Contributing
 
